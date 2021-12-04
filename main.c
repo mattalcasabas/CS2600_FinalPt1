@@ -7,6 +7,70 @@
 #define LSH_TOK_BUFSIZE 64
 #define LSH_TOK_DELIM " \t\r\n\a"
 
+// function declarations for built in shell commands
+int lsh_cd(char **args);
+int lsh_help(char **args);
+int lsh_exit(char **args);
+
+// built in commands
+
+char *builtin_str[] = {
+    "cd",
+    "help",
+    "exit"};
+
+int (*builtin_func[])(char **) = {
+    &lsh_cd,
+    &lsh_help,
+    &lsh_exit};
+
+int lsh_num_builtins()
+{
+   return sizeof(builtin_str) / sizeof(char *);
+}
+
+// built in function implementations
+
+int lsh_cd(char **args)
+{
+   if (args[1] == NULL)
+   {
+      fprintf(stderr, "lsh: expected argument to \"cd\"\n");
+   }
+   else
+   {
+      if (chdir(args[1]) != 0)
+      {
+         perror("lsh");
+      }
+   }
+   return 1;
+}
+
+int lsh_help(char **args)
+{
+   int i;
+   printf("LSH\n");
+   printf("Type program names and arguments, then hit enter\n");
+   printf("The following commands are built in:\n");
+
+   for (i = 0; i < lsh_num_builtins(); i++)
+   {
+      printf("    %s\n", builtin_str[i]);
+   }
+
+   printf("Use the man command for more informationm on other programs!\n");
+
+   return 1;
+}
+
+int lsh_exit(char **args)
+{
+   return 0;
+}
+
+// end of built in commands
+
 void lsh_loop()
 {
    char *line;
