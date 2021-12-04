@@ -60,7 +60,7 @@ int lsh_help(char **args)
       printf("    %s\n", builtin_str[i]);
    }
 
-   printf("Use the man command for more informationm on other programs!\n");
+   printf("Use the man command for more information on other programs!\n");
 
    return 1;
 }
