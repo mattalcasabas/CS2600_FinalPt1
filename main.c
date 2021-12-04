@@ -7,18 +7,6 @@
 #define LSH_TOK_BUFSIZE 64
 #define LSH_TOK_DELIM " \t\r\n\a"
 
-int main(int argc, char **argv)
-{
-   // load config files, if any
-
-   // run command loop
-   lsh_loop();
-
-   // perform any shutdown / cleanup
-
-   return EXIT_SUCCESS;
-}
-
 void lsh_loop()
 {
    char *line;
@@ -146,4 +134,16 @@ int lsh_launch(char **args)
    }
 
    return 1;
+}
+
+int main(int argc, char **argv)
+{
+   // load config files, if any
+
+   // run command loop
+   lsh_loop();
+
+   // perform any shutdown / cleanup
+
+   return EXIT_SUCCESS;
 }
