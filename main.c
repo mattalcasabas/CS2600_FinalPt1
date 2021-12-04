@@ -12,18 +12,21 @@
 int lsh_cd(char **args);
 int lsh_help(char **args);
 int lsh_exit(char **args);
+int lsh_about(char **args);
 
 // built in commands
 
 char *builtin_str[] = {
     "cd",
     "help",
-    "exit"};
+    "exit",
+    "about"};
 
 int (*builtin_func[])(char **) = {
     &lsh_cd,
     &lsh_help,
-    &lsh_exit};
+    &lsh_exit,
+    &lsh_about};
 
 int lsh_num_builtins()
 {
@@ -68,6 +71,12 @@ int lsh_help(char **args)
 int lsh_exit(char **args)
 {
    return 0;
+}
+
+int lsh_about(char **args)
+{ // added an easter egg, cause why not
+   printf("LSH: originally written by Stephen Brennan, adapted by Matthew Alcasabas\n");
+   printf("There is currently a lot of caffeine in my system so this might be a mess...\n");
 }
 
 // end of built in commands
