@@ -1,4 +1,9 @@
 CC=gcc
 
-lsh: main.c
-	$(cc) main.c -o lsh
+all: lsh
+
+lsh: src/main.c
+	$(CC) src/main.c -o lsh
+
+clean: 
+	rm -r lsh
