@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define LSH_RL_BUFSIZE 1024
 
@@ -70,24 +71,6 @@ int lsh_exit(char **args)
 }
 
 // end of built in commands
-
-void lsh_loop()
-{
-   char *line;
-   char **args;
-   int status;
-
-   do
-   {
-      printf("> ");
-      line = lsh_read_line();
-      args = lsh_split_line(line);
-      status = lsh_execute(args);
-
-      free(line);
-      free(args);
-   } while (status);
-}
 
 char *lsh_read_line(void)
 {
@@ -219,6 +202,24 @@ int lsh_execute(char **args)
    }
 
    return lsh_launch(args);
+}
+
+void lsh_loop()
+{
+   char *line;
+   char **args;
+   int status;
+
+   do
+   {
+      printf("> ");
+      line = lsh_read_line();
+      args = lsh_split_line(line);
+      status = lsh_execute(args);
+
+      free(line);
+      free(args);
+   } while (status);
 }
 
 int main(int argc, char **argv)
